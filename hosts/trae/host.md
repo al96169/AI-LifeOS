@@ -11,8 +11,23 @@ TraeCode CLI 支持非交互运行，可以直接被脚本调用，因此它能�
 | 在线判定 | 命令存在，且 `TRAECLI_PERSONAL_ACCESS_TOKEN` 在实例 `long-term/secrets.env` 里已配置 |
 | 工具通路 | 通过 Bash 调用 `tools/` 暴露的命令行入口 |
 | 人格加载 | 仓库根 `AGENTS.md`，以及项目级 `.trae/skills/lifeos-persona/` |
-| 接线位置 | 仓库根 `AGENTS.md`、项目级 `.trae/skills/` 与 `.trae/commands/` |
+| 接线位置 | 由 `target/` 部署到仓库根：`AGENTS.md`、`.trae/` |
 | 领取超时 | 10 分钟 |
+
+## 部署
+
+把 `target/` 下的内容复制到仓库根：
+
+```
+Copy-Item hosts/trae/target/* -Recurse -Force .
+```
+
+| 源 | 部署到 |
+|---|---|
+| `target/AGENTS.md` | 仓库根 `AGENTS.md` |
+| `target/.trae/` | 仓库根 `.trae/` |
+
+复制得到的这两个位置是部署产物，已在 `.gitignore` 里排除。改接线请改 `target/` 下的源，改完重跑这一步。
 
 ## 占位符
 

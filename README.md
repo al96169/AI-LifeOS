@@ -92,11 +92,13 @@ git config core.hooksPath .githooks
 
 完成标志：`--status` 能列出人格、持有者与心跳。
 
-### 6 接上宿主
+### 6 接上推理段
 
-推理段由外部 Agent 软件承担。按 `hosts/README.md` 的说明挑一个宿主，读它的 `host.md`，按里面登记的接线位置确认文件到位：仓库根 `AGENTS.md`、项目级 `.trae/skills/` 与 `.trae/commands/`。密钥写进实例的 `secrets.env`。
+推理段可以由外部 Agent 软件承担，也可以自己实现。选前者时，到 `hosts/` 里挑一个宿主，读它的 `host.md`，把 `target/` 下的内容部署到仓库根，密钥写进实例的 `secrets.env`。
 
-完成标志：在宿主里说一句「启用人格」，它能按 `DNA/人格规范.md` 的自检问题答出助理是谁、此刻该做什么；在宿主里键入 `/decision-loop`，它能读队列。
+这一步是可选的。不做的话，按 `DNA/架构与目录.md` 的加载顺序直接读文件，自己实现推理段即可——项目本身不依赖任何宿主软件。
+
+完成标志（选了宿主时）：按该宿主 `host.md` 里的验证方式，它能答出助理是谁、此刻该做什么，并能读队列处理一条待办。
 
 ### 7 首次启动并校验单实例
 
@@ -126,9 +128,9 @@ git config core.hooksPath .githooks
 
 ## 版本库边界
 
-这个仓库是开发项目，只收录三类改动：`DNA/`、人格模板 `personality/_template/`、以及目录结构本身，也就是各层的 README 与占位文件。
+这个仓库是开发项目，只收录四类改动：`DNA/`、人格模板 `personality/_template/`、目录结构本身，也就是各层的 README 与占位文件，以及宿主接入 `hosts/`。
 
-其余全部留在本机：引擎与工具的代码、画像与记忆、场景文件、本机配置、密钥。原因与条文见 `DNA/铁律.md` 的「版本库边界」。
+其余全部留在本机：引擎与工具的代码、画像与记忆、场景文件、本机配置、密钥，以及宿主部署到仓库根的产物。原因与条文见 `DNA/铁律.md` 的「版本库边界」。
 
 两道守门缺一不可。`.gitignore` 让不该出现的东西不出现在 `git status` 里，`.githooks/pre-commit` 在提交时逐条核对白名单并拒绝越界；第二道要执行一次 `git config core.hooksPath .githooks` 才生效。
 

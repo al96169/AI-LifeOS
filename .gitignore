@@ -65,6 +65,10 @@ build/
 brain/runtime/state/*
 !brain/runtime/state/.gitkeep
 
+# --- 宿主部署产物：由 hosts/<名字>/target/ 复制而来，改适配请改源 ---
+/AGENTS.md
+/.trae/
+
 # --- 编辑器与系统 ---
 .vscode/
 .idea/
