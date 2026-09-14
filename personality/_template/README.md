@@ -21,8 +21,8 @@
 ## 约定
 
 - `_template` 本身不参与运行，`user_id` 不得取这个名字
-- `long-term/secrets.env` 不入库，本目录只保留列出变量名的 `secrets.example.env`
-- 空目录用 `.gitkeep` 占位，运行时会写入的内容不入库
+- `long-term/secrets.env` 只存在本机，本目录只保留列出变量名的 `secrets.example.env`
+- 空目录用 `.gitkeep` 占位；运行时会写入的内容属于本机，不随模板分发
 
 ## 为什么这里没有示例内容
 
