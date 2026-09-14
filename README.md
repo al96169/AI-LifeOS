@@ -65,15 +65,19 @@ git config core.hooksPath .githooks
 
 ### 3 填实例
 
-按 `personality/_template/README.md` 的顺序填。四项不可省：`assistant.md` 定这个人格是谁，`config.md` 定阈值与本机参数，`long-term/profile/` 定用户是谁，`rules/` 定打扰与授权边界。
+按 `personality/_template/README.md` 的顺序填。初始化只填三样：`assistant.md` 定这个人格是谁，`rules/` 定打扰与授权边界，`config.md` 定阈值与本机参数。
 
-完成标志：`config.md` 里不再有「待填」。
+作息与偏好留空，密钥不填。这两类在第一次对话里给不准，留到后续对话里补，理由见 `DNA/初始化引导.md` 的「初始化时不问什么」。阈值沿用默认值即可。
 
-### 4 配密钥
+完成标志：`assistant.md` 与 `rules/` 写得出来，`config.md` 里剩下的「待填」只属于作息、偏好与密钥这三类。
 
-复制 `long-term/secrets.example.env` 为 `long-term/secrets.env`，按 `long-term/capabilities.md` 的申请顺序逐项获取。密钥只写在 `secrets.env` 里，其他任何地方都不出现明文。
+### 4 备好密钥文件
 
-完成标志：清单里阶段 0 需要的四项状态为「可用」，且每项都跑通过一次真实调用。
+初始化不需要任何密钥。宿主自己承担推理，其余能力等某个场景第一次真正需要时再走资源申请流程。
+
+现在只做一件事：复制 `long-term/secrets.example.env` 为 `long-term/secrets.env`，放好，留空。它已在忽略规则里，不进库。
+
+完成标志：文件就位、内容为空。清单里各项状态仍是「未申请」，这属正常。
 
 ### 5 实现引擎与工具
 
