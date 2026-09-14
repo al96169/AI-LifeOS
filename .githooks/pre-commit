@@ -2,8 +2,9 @@
 # 版本库边界守门。规则见 DNA/铁律.md「版本库边界」。
 #
 # 白名单之外的一切都不允许进入版本库，尤其是：
-#   引擎与工具的代码、画像与记忆、场景文件、本机配置、密钥。
-#   白名单涵盖 DNA、人格模板、目录结构与宿主接入四类。
+#   引擎与工具的代码、画像与记忆、场景文件、本机配置、密钥，
+#   以及 Agent 软件初始化时为自己写入的配置与路由登记。
+#   白名单涵盖 DNA、人格模板与目录结构三类。
 # 需要提交白名单外的内容时，用 git commit --no-verify，并在提交信息里写明理由。
 
 staged=$(git diff --cached --name-only --diff-filter=ACMR)
@@ -22,7 +23,6 @@ for f in $staged; do
     .githooks/*|.gitattributes|.gitignore|README.md) allow=1 ;;
     personality/README.md) allow=1 ;;
     personality/_template/*) allow=1 ;;
-    hosts/*) allow=1 ;;
   esac
 
   if [ "$allow" = "0" ]; then
@@ -61,7 +61,7 @@ if [ -n "$denied" ]; then
   printf "%s" "$denied"
   echo ""
   echo "版本库只接受 DNA、人格模板与目录结构的改动。"
-  echo "代码、画像、记忆、场景、本机配置与密钥一律留在本机。"
+  echo "代码、画像、记忆、场景、本机配置、密钥，以及 Agent 软件的路由登记，一律留在本机。"
   echo "规则见 DNA/铁律.md「版本库边界」。"
   exit 1
 fi

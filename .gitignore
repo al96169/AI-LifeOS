@@ -61,13 +61,17 @@ env/
 dist/
 build/
 
-# --- 引擎运行态 ---
+# --- 运行态与路由登记，均由运行时或初始化写入 ---
 brain/runtime/state/*
 !brain/runtime/state/.gitkeep
+brain/router/*
+!brain/router/README.md
 
-# --- 宿主部署产物：由 hosts/<名字>/target/ 复制而来，改适配请改源 ---
-/AGENTS.md
-/.trae/
+# --- 各 Agent 软件初始化时写入自己的配置，点开头的目录一律不入库 ---
+/.*
+!/.gitignore
+!/.gitattributes
+!/.githooks/
 
 # --- 编辑器与系统 ---
 .vscode/
