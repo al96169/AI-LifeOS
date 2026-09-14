@@ -20,7 +20,7 @@ for f in $staged; do
 
   case "$f" in
     DNA/*) allow=1 ;;
-    .githooks/*|.gitattributes|.gitignore|README.md) allow=1 ;;
+    .githooks/*|.gitattributes|.gitignore|README.md|LICENSE) allow=1 ;;
     personality/README.md) allow=1 ;;
     personality/_template/*) allow=1 ;;
   esac
