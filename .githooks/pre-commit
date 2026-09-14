@@ -1,0 +1,68 @@
+#!/bin/sh
+# 版本库边界守门。规则见 DNA/铁律.md「版本库边界」。
+#
+# 白名单之外的一切都不允许进入版本库，尤其是：
+#   引擎与工具的代码、画像与记忆、场景文件、本机配置、密钥。
+#
+# 需要提交白名单外的内容时，用 git commit --no-verify，并在提交信息里写明理由。
+
+staged=$(git diff --cached --name-only --diff-filter=ACMR)
+
+if [ -z "$staged" ]; then
+  exit 0
+fi
+
+denied=""
+
+for f in $staged; do
+  allow=0
+
+  case "$f" in
+    DNA/*) allow=1 ;;
+    .githooks/*|.gitattributes|.gitignore|README.md) allow=1 ;;
+    personality/README.md) allow=1 ;;
+    personality/_template/*) allow=1 ;;
+  esac
+
+  if [ "$allow" = "0" ]; then
+    case "$f" in
+      brain/*|tools/*)
+        case "$f" in
+          */README.md|*/.gitkeep) allow=1 ;;
+        esac
+        ;;
+    esac
+  fi
+
+  # 一票否决：真实密钥、日志与缓存，无论放在哪里
+  case "$f" in
+    *secrets.env|*.env|*/short-term/logs/*|*/short-term/cache/*) allow=0 ;;
+  esac
+
+  # 占位文件是目录结构本身，任何位置都放行
+  case "$f" in
+    */.gitkeep) allow=1 ;;
+  esac
+
+  # 模板里的示例文件是唯一放行的 env
+  case "$f" in
+    */secrets.example.env) allow=1 ;;
+  esac
+
+  if [ "$allow" = "0" ]; then
+    denied="$denied  $f
+"
+  fi
+done
+
+if [ -n "$denied" ]; then
+  echo "拒绝提交以下内容："
+  printf "%s" "$denied"
+  echo ""
+  echo "版本库只接受 DNA、人格模板与目录结构的改动。"
+  echo "代码、画像、记忆、场景、本机配置与密钥一律留在本机。"
+  echo "规则见 DNA/铁律.md「版本库边界」。"
+  exit 1
+fi
+
+exit 0

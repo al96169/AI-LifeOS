@@ -1,0 +1,72 @@
+# ============================================================
+# 版本库只接受 DNA、人格模板与目录结构的改动。
+# 代码、画像、记忆、场景、本机配置与密钥一律留在本机。
+# 规则见 DNA/铁律.md「版本库边界」。
+# ============================================================
+
+# --- 人格实例：整体不入库 ---
+# 画像是你是谁，记忆是你的经历，场景是你的处境，配置里有你的坐标与号码。
+personality/*/
+!personality/_template/
+
+# --- 密钥与运行态：任何位置都不入库 ---
+*secrets.env
+personality/_template/short-term/logs/*
+personality/_template/short-term/cache/*
+!personality/_template/short-term/logs/.gitkeep
+!personality/_template/short-term/cache/.gitkeep
+
+# --- 代码：引擎与工具只保留结构说明与占位 ---
+*.py
+*.pyc
+*.pyo
+*.pyd
+*.js
+*.mjs
+*.cjs
+*.ts
+*.tsx
+*.jsx
+*.go
+*.rs
+*.java
+*.kt
+*.cs
+*.rb
+*.php
+*.swift
+*.c
+*.cc
+*.cpp
+*.h
+*.hpp
+*.sh
+*.bash
+*.zsh
+*.ps1
+*.bat
+*.cmd
+*.sql
+*.ipynb
+*.toml
+*.lock
+Makefile
+Dockerfile
+docker-compose.yml
+__pycache__/
+node_modules/
+.venv/
+venv/
+env/
+dist/
+build/
+
+# --- 引擎运行态 ---
+brain/runtime/state/*
+!brain/runtime/state/.gitkeep
+
+# --- 编辑器与系统 ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
