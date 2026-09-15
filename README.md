@@ -32,7 +32,7 @@ tools/          动作、渠道、感知、脚本
 
 先按顺序读（不跳）：`DNA/README.md` → `DNA/铁律.md` → `DNA/架构与目录.md` → `DNA/人格规范.md` → `DNA/版本.md` → 实例 `assistant.md` 与 `config.md` → `brain/README.md` 与 `tools/README.md`。读完用 `人格规范.md` 自检题验一遍，答不出别动手。
 
-选择你要做的事：只想跑起来→初始化；换模型/渠道→只改 `brain/models/` 或 `tools/channels/`；改行为→改实例定义；换电脑/系统→`人格规范.md` 重建协议；实例落后→`升级指导.md` 逐级升。
+选择你要做的事：只想跑起来→初始化；换模型/渠道→只改 `brain/models/` 或 `tools/channels/`；改行为→改实例定义；换电脑/系统→`人格规范.md` 重建协议；实例落后→先看 `更新.md` 的检查与协商，拍板后按 `升级指导.md` 逐级升。
 
 ## 初始化
 
